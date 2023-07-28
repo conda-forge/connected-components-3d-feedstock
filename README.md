@@ -3,11 +3,13 @@ About connected-components-3d-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/connected-components-3d-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/seung-lab/connected-components-3d/
+Home: https://pypi.org/project/connected-components-3d
 
 Package license: GPL-3.0-only
 
 Summary: Connected components on 2D and 3D images. Supports multiple labels.
+
+Development: https://github.com/seung-lab/connected-components-3d/
 
 Current build status
 ====================
