@@ -12,7 +12,7 @@ source:
 build:
   skip: true  # [py<37]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -24,7 +24,6 @@ requirements:
     - pip
     - python
   run:
-    - {{ pin_compatible('numpy') }}
     - python
 
 test:
