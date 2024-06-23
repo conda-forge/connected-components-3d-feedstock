@@ -1,5 +1,5 @@
 {% set name = "connected-components-3d" %}
-{% set version = "3.16.1" %}
+{% set version = "3.17.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/connected-components-3d-{{ version }}.tar.gz
-  sha256: df37112eafa40ed747beb5b551dc02b19f5f0e0f537fc52319f9c5245c3efd8a
+  sha256: acbd20dcd0bdeab3dd521e9cd62798187e7e0e4e3eaa951f33b6557c94044cb2
 
 build:
   skip: true  # [py<37]
