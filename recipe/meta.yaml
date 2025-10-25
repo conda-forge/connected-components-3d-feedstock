@@ -23,8 +23,8 @@ requirements:
     - pbr
     - pip
     - python
+    - setuptools
   run:
-    - {{ pin_compatible('numpy') }}
     - python
 
 test:
