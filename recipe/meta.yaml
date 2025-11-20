@@ -45,8 +45,8 @@ test:
 about:
   home: https://pypi.org/project/connected-components-3d
   summary: Connected components on 2D and 3D images. Supports multiple labels.
-  license: GPL-3.0-only
-  license_file: LICENSE
+  license: LGPL-3.0-or-later
+  license_file: COPYING.LESSER
   dev_url: https://github.com/seung-lab/connected-components-3d/
 
 extra:
