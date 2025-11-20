@@ -6,8 +6,9 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/connected-components-3d-{{ version }}.tar.gz
-  sha256: a48af38d45e51b86d7f027d82f480768e794ca09904bf167410594cd021e4b1b
+  # Apparently the tarball name uses underscores
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/connected_components_3d-{{ version }}.tar.gz
+  sha256: 2f558954c3f732d404fc9b380a36a934ba9216c54e387e3d32439fd35ed48bbb
 
 build:
   skip: true  # [py<37]
