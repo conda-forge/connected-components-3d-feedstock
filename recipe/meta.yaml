@@ -1,13 +1,14 @@
 {% set name = "connected-components-3d" %}
-{% set version = "3.17.0" %}
+{% set version = "3.26.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/connected-components-3d-{{ version }}.tar.gz
-  sha256: acbd20dcd0bdeab3dd521e9cd62798187e7e0e4e3eaa951f33b6557c94044cb2
+  # Apparently the tarball name uses underscores
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/connected_components_3d-{{ version }}.tar.gz
+  sha256: 2f558954c3f732d404fc9b380a36a934ba9216c54e387e3d32439fd35ed48bbb
 
 build:
   skip: true  # [py<37]
@@ -16,15 +17,20 @@ build:
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - cython                                 # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
   host:
+    - setuptools
     - numpy
     - pbr
     - pip
     - python
+    - cython
   run:
-    - {{ pin_compatible('numpy') }}
     - python
 
 test:
@@ -39,11 +45,12 @@ test:
 about:
   home: https://pypi.org/project/connected-components-3d
   summary: Connected components on 2D and 3D images. Supports multiple labels.
-  license: GPL-3.0-only
-  license_file: LICENSE
+  license: LGPL-3.0-or-later
+  license_file: COPYING.LESSER
   dev_url: https://github.com/seung-lab/connected-components-3d/
 
 extra:
   recipe-maintainers:
     - goanpeca
     - william-silversmith
+    - stuarteberg
