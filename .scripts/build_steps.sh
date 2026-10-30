@@ -91,13 +91,28 @@ if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
     #   - none vs. --target-platform
     CONDA_SUBDIR="${BUILD_PLATFORM}" conda debug \
         "${RECIPE_ROOT}" \
-        -m "${CONFIG_FILE}" \
+        -m "${CI_SUPPORT}/${CONFIG}.yaml" \
         ${EXTRA_CB_OPTIONS:-} \
         ${BUILD_OUTPUT_ID:+--output-id "${BUILD_OUTPUT_ID}"} \
         --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml"
 
     # Drop into an interactive shell
     /bin/bash
+else
+    # differences between conda-build vs. rattler-build
+    #   - recipe is positional vs. --recipe "${RECIPE_ROOT}"
+    #   - --suppress-variables vs. none
+    #   - --clobber-file vs. none
+    #   - none vs. --target-platform
+    #   - --extra-meta a=b c=d vs. --extra-meta a=b --extra-meta c=d
+    CONDA_SUBDIR="${BUILD_PLATFORM}" conda-build \
+        "${RECIPE_ROOT}" \
+        -m "${CI_SUPPORT}/${CONFIG}.yaml" \
+        ${EXTRA_CB_OPTIONS:-} \
+        --suppress-variables \
+        --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml" \
+        --extra-meta flow_run_id="${flow_run_id:-}" remote_url="${remote_url:-}" sha="${sha:-}"
+    ( startgroup "Inspecting artifacts" ) 2> /dev/null
 fi
 
 # Build the recipe

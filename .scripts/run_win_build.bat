@@ -88,14 +88,12 @@ if NOT [%flow_run_id%] == [] (
 
 :: Build the recipe
 echo Building recipe
-
-conda-build.exe ^
-    "%RECIPE_ROOT%" ^
-    -m %CONFIG_FILE% ^
-    %EXTRA_CB_OPTIONS% ^
-    --suppress-variables
-
+set "_OLD_CONDA_SUBDIR=%CONDA_SUBDIR%"
+set "CONDA_SUBDIR=%BUILD_PLATFORM%"
+conda-build.exe "recipe" -m .ci_support\%CONFIG%.yaml --suppress-variables %EXTRA_CB_OPTIONS%
 if !errorlevel! neq 0 exit /b !errorlevel!
+set "_OLD_CONDA_SUBDIR="
+set "CONDA_SUBDIR=%_OLD_CONDA_SUBDIR%"
 
 call :start_group "Inspecting artifacts"
 
